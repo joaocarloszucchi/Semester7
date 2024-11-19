@@ -1,0 +1,1 @@
+Lembre de ajustar o caminho correto dos arquivos se for executar algum script, substituindo a variável folder path e afins 
