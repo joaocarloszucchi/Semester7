@@ -1,0 +1,53 @@
+S() {
+	LETOKEN;
+	if TOKEN == 'if'{
+		E()
+		LETOKEN;
+		if TOKEN == 'then'{
+			S()
+			LETOKEN;
+			if TOKEN == 'else'{
+				S();
+			}
+		}	
+	}
+	else if TOKEN == 'id:='{
+		E();
+	}
+	else{
+		return ERRO
+	}
+}
+
+E() {
+	LETOKEN;
+	if TOKEN == '~ id'{
+		F();
+	}
+	else if TOKEN == 'id'{
+		F();
+	}
+	else if TOKEN == '('{
+		E()
+		LETOKEN;
+		if TOKEN == ')'{
+			F()
+		}
+	}
+	else{
+		return ERRO
+	}
+}
+
+F() {
+	LETOKEN;
+	if TOKEN == 'v'{
+		E();
+	}
+	else if TOKEN == 'empty'{
+		return;
+	}
+	else{
+		return ERRO
+	}
+}

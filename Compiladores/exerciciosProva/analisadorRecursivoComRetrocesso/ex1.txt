@@ -1,0 +1,67 @@
+S -> Aaa | Abb
+A -> aA | bA | 3
+
+reconhecer:
+-ababb
+-babab
+-bbbaa
+-ababb
+
+main:
+    token = LETOKEN
+    if S:
+        if token == $
+            return true
+        else
+            return false
+    else
+        return false
+
+S:
+    MARCA_PONTO
+    if A:
+        /* n sei se pode isso, mas parece fazer sentido
+        if token == $ // se chegou ao final, retorna 2 para validar o (aa | bb)
+            RETROCEDE
+            RETROCEDE
+        */
+        if token == a
+            token = LETOKEN
+            if token == a
+                token = LETOKEN
+                return true
+            else
+                return false
+        else if token == b
+            token = LETOKEN
+            if token == b
+                token = LETOKEN
+                return true
+            else
+        else
+            return false
+    else
+        return false
+
+A:
+    if token == a:
+        token = LETOKEN
+        if A:
+            return true
+        else:
+            return false
+    else if token == b:
+        token = LETOKEN
+        if A:
+            return true
+        else:
+            return false
+    else:
+        return true
+
+
+ababb = S - A - A - A - A - A - A
+deu 'errado' pois foi validando os tokens ate os 2 ultimos. deveria ter parado em aba,
+e o bb seria validado dentro da função S. em algum lugar deveria ter um MARCA_PONTO.
+pensei em talvez um RETROCEDE duplo em S, para validar os 2 ultimos caracteres, 
+já que essa linguagem é basicamente um (a | b)* (aa | bb)

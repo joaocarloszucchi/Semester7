@@ -1,0 +1,10 @@
+{
+    "non_terminal_symbols": ["S", "A", "B"],
+    "terminal_symbols": ["0", "1"],
+    "initial_symbol": "S",
+    "productions": [
+      {"symbol": "S", "derivations": ["1 A", "0 B", "e"]},
+      {"symbol": "A", "derivations": ["0 B", "e"]},
+      {"symbol": "B", "derivations": ["1 A", "e"]}
+    ]
+}
